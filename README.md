@@ -20,6 +20,7 @@ A Simple Command Line Logger.
 - `-a --author`, add the author of a new record.
 - `-t --type`, the type of record, should be one of `idea`/`common`/`bug`, will be set to `common` by default.
 - `-np --no-print`, choose weather to print this record in the terminal.
+- `-y --yes`, skip confirming save.
 - `-e --expire`(not available for now), set time for record to be saved.
 - `-m --mode`(not available), set the record mode.
 
