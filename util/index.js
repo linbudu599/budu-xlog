@@ -3,6 +3,7 @@ const path = require("path");
 const touch = require("touch");
 const chalk = require("chalk");
 const inquirer = require("inquirer");
+const boxen = require("boxen");
 const figlet = require("figlet");
 
 class Util {
@@ -61,7 +62,14 @@ class Util {
 
   printAll = () => {
     this.consoler(
-      figlet.textSync("@BUDU/XLOG", { horizontalLayout: "full" }),
+      boxen(figlet.textSync("@BUDU/XLOG", { horizontalLayout: "full" }), {
+        padding: 1,
+        margin: 1,
+        borderStyle: "bold",
+        borderColor: "green",
+        float: "left",
+        align: "left"
+      }),
       "green"
     );
     console.table(this.readAll());
