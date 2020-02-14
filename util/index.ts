@@ -1,19 +1,20 @@
-const fs = require("fs");
-const path = require("path");
-const touch = require("touch");
-const chalk = require("chalk");
-const inquirer = require("inquirer");
-const boxen = require("boxen");
-const figlet = require("figlet");
+import fs from "fs";
+import path from "path";
+import touch from "touch";
+import chalk from "chalk";
+import inquirer from "inquirer";
+import boxen from "boxen";
+import figlet from "figlet";
 
 class Util {
   // TODO: more types to print
-  consoler = (text, color = "green") => {
+  consoler = (text: string, color: string = "green"): void => {
+    // @ts-ignore
     const fn = chalk[color] || chalk.green;
     console.log(fn(text));
   };
 
-  readOrCreateFile = (info, cb) => {
+  readOrCreateFile = (info: IOpts, cb: (txt: IOpts) => void): void => {
     let content = [];
     const filePath = path.join(__dirname, "../log.json");
     // if exist, append log text to the file
@@ -32,20 +33,20 @@ class Util {
     }
   };
 
-  writeToFile = txt => {
+  writeToFile = (txt: IOpts): void => {
     try {
       fs.writeFileSync("./log.json", JSON.stringify(txt), "utf-8");
       this.consoler("Successfully Saved");
     } catch (e) {
-      consoler(e, "red");
+      this.consoler(e, "red");
     }
   };
 
-  readAll = () => {
+  readAll = (): IOpts => {
     return JSON.parse(fs.readFileSync("./log.json", "utf-8"));
   };
 
-  confirmSave = async ({ content, type, author }) => {
+  confirmSave = async ({ content, type, author }: IOpts): Promise<string> => {
     const { save } = await inquirer.prompt({
       message: `
       确认保存？
@@ -60,12 +61,11 @@ class Util {
     return save;
   };
 
-  printAll = () => {
+  printAll = (): void => {
     this.consoler(
       boxen(figlet.textSync("@BUDU/XLOG", { horizontalLayout: "full" }), {
         padding: 1,
         margin: 1,
-        borderStyle: "bold",
         borderColor: "green",
         float: "left",
         align: "left"
@@ -76,4 +76,4 @@ class Util {
   };
 }
 
-module.exports = Util;
+export default Util;

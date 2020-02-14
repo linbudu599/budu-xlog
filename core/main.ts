@@ -1,12 +1,12 @@
-const random = require("random-id");
-const boxen = require("boxen");
-const Util = require("../util");
-require("console.table");
+import random from "random-id";
+import Util from "../util";
+
+import("console.table");
 
 class Xlog extends Util {
-  constructor(opts) {
+  public constructor(opts: IOpts) {
     super();
-    let result = {};
+    let result: IOpts = {};
     const { new: content, author, type, list, print, yes } = opts;
 
     if (!content && !list) {
@@ -18,9 +18,9 @@ class Xlog extends Util {
     }
 
     this.setDefaultProps(result);
-    this.setCustomProps(result, "author", author);
-    this.setCustomProps(result, "content", content);
-    this.setTypes(result, type);
+    this.setCustomProps(result, "author", author!);
+    this.setCustomProps(result, "content", content!);
+    this.setTypes(result, type!);
 
     if (!yes && !list) {
       (async () => {
@@ -43,24 +43,24 @@ class Xlog extends Util {
     }
   }
 
-  printResult(result) {
+  printResult(result: IOpts) {
     console.table(result);
   }
 
-  setDefaultProps(result) {
+  setDefaultProps(result: IOpts) {
     result.author = "linbudu";
     result.type = "common";
     result.hash = random(8, "a0");
     result.date = new Date().toLocaleString();
   }
 
-  setCustomProps(result, key, value) {
+  setCustomProps(result: IOpts, key: string, value: string) {
     if (value) {
       return (result[key] = value);
     }
   }
 
-  setTypes(result, val) {
+  setTypes(result: IOpts, val: string) {
     if (!val) {
       this.consoler("type will be set to 'common' by default", "yellow");
     } else if (val !== "common" && val !== "idea" && val !== "bug") {
@@ -74,5 +74,4 @@ class Xlog extends Util {
     }
   }
 }
-
-module.exports = Xlog;
+export default Xlog;

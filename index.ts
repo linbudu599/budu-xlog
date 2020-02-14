@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-const program = require("commander");
+import program from "commander";
 
-const Xlog = require("./core/main");
+import Xlog from "./core/main";
 
-program.version("0.1.3");
+program.version("0.1.4");
 
 program
   // 内容 必填

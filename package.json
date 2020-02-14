@@ -1,6 +1,6 @@
 {
   "name": "xlog",
-  "version": "1.0.0",
+  "version": "0.1.4",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,10 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@types/figlet": "^1.2.0",
+    "@types/inquirer": "^6.5.0",
+    "@types/node": "^13.7.1",
+    "@types/touch": "^3.1.1",
     "boxen": "^4.2.0",
     "chalk": "^3.0.0",
     "clear": "^0.1.0",
@@ -23,6 +27,7 @@
     "lodash": "^4.17.15",
     "minimist": "^1.2.0",
     "random-id": "^1.0.3",
-    "touch": "^3.1.0"
+    "touch": "^3.1.0",
+    "typescript": "^3.7.5"
   }
 }
