@@ -42,6 +42,15 @@ class Util {
     }
   };
 
+  clearAll = (): void => {
+    try {
+      fs.writeFileSync("./log.json", "", "utf-8");
+      this.consoler("Clear Successfully");
+    } catch (e) {
+      this.consoler(e, "red");
+    }
+  };
+
   readAll = (): IOpts => {
     return JSON.parse(fs.readFileSync("./log.json", "utf-8"));
   };

@@ -19,6 +19,7 @@ program
   .option("--no-print", "print result")
   // 是否跳过询问直接写入
   .option("-y,--yes", "skip confirming save")
+  .option("-c, --clear", "clear all records")
   .parse(process.argv);
 
 // console.log(JSON.stringify(program.opts()));

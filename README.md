@@ -22,6 +22,7 @@ A Simple Command Line Logger.
 - `--no-print`, choose weather to print this record in the terminal.
 - `-y --yes`, skip confirming save.
 - `-m --mode`(not available), set the record mode.
+- `-c --clear`, clear all records.
 
 ### Other
 
