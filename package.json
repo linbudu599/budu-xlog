@@ -1,16 +1,16 @@
 {
-  "name": "xlog",
-  "version": "0.1.4",
-  "description": "",
+  "name": "@penumbra/xlog",
+  "version": "0.1.1",
+  "description": "A simple Command Line Note Book",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "bin": {
     "xlog": "./index.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "command line",
+    "note"
+  ],
+  "author": "linbudu",
   "license": "MIT",
   "dependencies": {
     "@types/figlet": "^1.2.0",

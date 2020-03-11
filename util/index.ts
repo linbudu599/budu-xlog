@@ -73,8 +73,6 @@ class Util {
   printAll = (): void => {
     this.consoler(
       boxen(figlet.textSync("@BUDU/XLOG", { horizontalLayout: "full" }), {
-        padding: 1,
-        margin: 1,
         borderColor: "green",
         float: "left",
         align: "left"

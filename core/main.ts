@@ -7,28 +7,18 @@ class Xlog extends Util {
   public constructor(opts: IOpts) {
     super();
     let result: IOpts = {};
-    const { new: content, author, type, list, print, yes, clear } = opts;
-    console.log(opts);
-    if (content && clear) {
-      this.consoler("Do not use '-c' when creating new record", "red");
-      process.exit(1);
-    }
+    const { new: content, author, type, list, print, yes } = opts;
 
-    if (clear) {
-      this.clearAll();
-      process.exit(0);
-    }
-
-    if (!content && !list && !clear) {
+    if (!content && !list) {
       this.consoler(
-        `You Should Specify At Least One Options Below \n 
-        '-l'(show all records) \n
-        '-n'(create a new record) \n
-        '-c'(clear all records) \n
-        `,
+        "You Should Specify At Least One Options Like '-l'(show all records) Or/And '-n'(create a new record).",
         "red"
       );
       process.exit(1);
+    }
+    if (list) {
+      this.printAll();
+      return;
     }
 
     this.setDefaultProps(result);
@@ -36,7 +26,7 @@ class Xlog extends Util {
     this.setCustomProps(result, "content", content!);
     this.setTypes(result, type!);
 
-    if (!yes && !list && !clear) {
+    if (!yes && !list) {
       (async () => {
         const save = await this.confirmSave(result);
         if (save === "y") {
@@ -50,10 +40,6 @@ class Xlog extends Util {
       })();
     } else {
       this.readOrCreateFile(result, this.writeToFile);
-    }
-
-    if (list) {
-      this.printAll();
     }
   }
 
