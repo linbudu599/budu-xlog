@@ -6,6 +6,9 @@
   "bin": {
     "xlog": "./index.js"
   },
+  "scripts": {
+    "transform": "tsc"
+  },
   "keywords": [
     "command line",
     "note"
