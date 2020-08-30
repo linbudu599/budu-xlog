@@ -1,13 +1,14 @@
 {
   "name": "@penumbra/xlog",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A simple Command Line Note Book",
   "main": "index.js",
   "bin": {
     "xlog": "./index.js"
   },
   "scripts": {
-    "transform": "tsc"
+    "tsc": "tsc",
+    "link": "npm run tsc && npm link --force"
   },
   "keywords": [
     "command line",
@@ -16,10 +17,6 @@
   "author": "linbudu",
   "license": "MIT",
   "dependencies": {
-    "@types/figlet": "^1.2.0",
-    "@types/inquirer": "^6.5.0",
-    "@types/node": "^13.7.1",
-    "@types/touch": "^3.1.1",
     "boxen": "^4.2.0",
     "chalk": "^3.0.0",
     "clear": "^0.1.0",
@@ -35,6 +32,10 @@
     "typescript": "^3.7.5"
   },
   "devDependencies": {
-    "@types/cli-table": "^0.3.0"
+    "@types/cli-table": "^0.3.0",
+    "@types/figlet": "^1.2.0",
+    "@types/inquirer": "^6.5.0",
+    "@types/node": "^13.7.1",
+    "@types/touch": "^3.1.1"
   }
 }

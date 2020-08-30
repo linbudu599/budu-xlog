@@ -6,15 +6,14 @@ import inquirer from "inquirer";
 import boxen from "boxen";
 import figlet from "figlet";
 
-class Util {
-  // TODO: more types to print
+class Util implements IUtil {
   consoler = (text: string, color: string = "green"): void => {
     // @ts-ignore
     const fn = chalk[color] || chalk.green;
-    console.log(fn(text));
+    console.log(fn(`[X-LOG] ${text}`));
   };
 
-  readOrCreateFile = (info: IOpts, cb: (txt: IOpts) => void): void => {
+  readOrCreateFile = (info: IOpts, recorder: (txt: IOpts) => void): void => {
     let content = [];
     const filePath = path.join(__dirname, "../log.json");
     // if exist, append log text to the file
@@ -22,14 +21,14 @@ class Util {
       try {
         const original = JSON.parse(fs.readFileSync(filePath, "utf8"));
         original.push(info);
-        cb(original);
+        recorder(original);
       } catch (err) {
         console.error(err);
       }
     } else {
       touch("log.json");
       content.push(info);
-      cb(content);
+      recorder(content);
     }
   };
 
@@ -51,11 +50,11 @@ class Util {
     }
   };
 
-  readAll = (): IOpts => {
-    return JSON.parse(fs.readFileSync("./log.json", "utf-8"));
-  };
-
-  confirmSave = async ({ content, type, author }: IOpts): Promise<string> => {
+  confirmSave = async ({
+    content,
+    type,
+    author,
+  }: IOpts): Promise<"y" | "n"> => {
     const { save } = await inquirer.prompt({
       message: `
       确认保存？
@@ -65,21 +64,29 @@ class Util {
       `,
       type: "list",
       name: "save",
-      choices: ["y", "n"]
+      choices: ["y", "n"],
     });
     return save;
   };
 
+  printResult(result: IOpts) {
+    console.table(result);
+  }
+
   printAll = (): void => {
     this.consoler(
-      boxen(figlet.textSync("@BUDU/XLOG", { horizontalLayout: "full" }), {
+      boxen(figlet.textSync("X-LOG", { horizontalLayout: "full" }), {
         borderColor: "green",
         float: "left",
-        align: "left"
+        align: "left",
       }),
       "green"
     );
-    console.table(this.readAll());
+    console.table(JSON.parse(fs.readFileSync("./log.json", "utf-8")));
+  };
+
+  checkLogExistence = (): boolean => {
+    return fs.existsSync("./log.json");
   };
 }
 

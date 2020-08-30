@@ -3,7 +3,7 @@ import program from "commander";
 
 import Xlog from "./core/main";
 
-program.version("0.1.1");
+program.version("0.1.2");
 
 program
   // 内容 必填
@@ -22,6 +22,6 @@ program
   // .option("-c, --clear", "clear all records")
   .parse(process.argv);
 
-// console.log(JSON.stringify(program.opts()));
+console.log(JSON.stringify(program.opts()));
 
 new Xlog(program.opts());
